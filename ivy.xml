@@ -1,0 +1,10 @@
+<ivy-module version="2.0">
+    <info organisation="dk.rohdef" module="jersey-auth"/>
+
+    <dependencies>
+        <dependency org="org.glassfish.jersey.core" name="jersey-server" rev="2.19"/>
+        <dependency org="org.glassfish.jersey.core" name="jersey-common" rev="2.19"/>
+        <dependency org="org.glassfish.jersey.containers" name="jersey-container-servlet-core" rev="2.19"/>
+        <dependency org="org.glassfish.jersey.media" name="jersey-media-json-jackson" rev="2.19"/>
+    </dependencies>
+</ivy-module>

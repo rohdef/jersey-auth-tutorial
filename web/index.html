@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jersey 2 authentication</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div>
+    <h1>Jersey 2 authentication</h1>
+
+    <div id="error">
+        <button type="button" id="errorClose">X</button>
+        <h1>Error</h1>
+        <h2 id="errorStatus"></h2>
+        <p id="errorText"></p>
+    </div>
+
+    <div id="login">
+        <h1>Login</h1>
+        <form>
+            <label for="username">Username</label>
+            <input type="text" id="username"><br />
+            <label for="password">Password</label>
+            <input type="text" id="password"><br />
+            <button type="button" id="loginBtn">Log in</button>
+        </form>
+
+        <h2>Quick insert user</h2>
+        <ul>
+            <li><a href="#" id="fiktivusLnk">Fiktivus - admin</a></li>
+            <li><a href="#" id="realisLnk">Realis - user</a></li>
+        </ul>
+
+        <h2>jQuery settings example</h2>
+        <textarea id="settingsExample" disabled="disabled">
+        </textarea>
+    </div>
+
+    <div id="token">
+        <h1>Current token</h1>
+        <textarea id="currentToken" disabled="disabled"></textarea>
+    </div>
+
+    <div id="tester">
+        <h1>Service tester</h1>
+
+        <textarea id="responseArea" disabled="disabled">
+
+        </textarea><br />
+
+        <button type="button" id="getAnswer">Get the answer (admin)</button>
+        <button type="button" id="getValuables">Get the valuables (user)</button><br />
+        <button type="button" id="getMedicine">Get medicine (admin,user)</button>
+        <button type="button" id="getJoke">Get a joke (PermitAll)</button>
+        <br />
+        <textarea id="requestCode" disabled="disabled">
+
+        </textarea>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="script.js"></script>
+</div>
+</body>
+</html>

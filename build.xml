@@ -1,0 +1,45 @@
+<project name="test ivy" default="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
+    <property name="web.dir" value="web" />
+    <property name="out.dir" value="out" />
+    <property name="lib.dir" value="lib" />
+    <property name="build.dir" value="${out.dir}/build" />
+    <property name="src.dir" value="src" />
+    <property name="name" value="jersey-auth" />
+
+    <target name="init">
+        <mkdir dir="${lib.dir}" />
+        <mkdir dir="${out.dir}" />
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <path id="compile.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="compile" depends="resolve" >
+        <javac destdir="${build.dir}" debug="true" srcdir="${src.dir}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="build-war" depends="compile">
+        <war destfile="${out.dir}/${name}.war" webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${web.dir}">
+                <include name="**/*.*" />
+            </fileset>
+            <lib dir="${lib.dir}" />
+            <classes dir="${build.dir}/" />
+        </war>
+    </target>
+
+    <target name="resolve" description="ivy installation" depends="init">
+        <ivy:retrieve/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${lib.dir}" />
+        <delete dir="${out.dir}" />
+    </target>
+</project>
