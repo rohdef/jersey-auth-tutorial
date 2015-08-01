@@ -1,3 +1,20 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+main {
+    text-align: left;
+    margin: 1em auto;
+    border: 1px dashed gray;
+    background: floralwhite;
+    display: inline-block;
+}
+
+section {
+}
+
 div {
     background: moccasin;
 }
@@ -6,7 +23,21 @@ button {
     margin: 0.3em;
 }
 
-#login, #token, #tester{
+h1 {
+    text-align: center;
+}
+
+h2 {
+    font-size: 115%;
+}
+
+textarea {
+    height: 180px;
+    min-width: 250px;
+    width: 400px;
+}
+
+#login, #token, #tester {
     border: 1px dashed darkgoldenrod;
     -webkit-border-radius: 0.4em;
     -moz-border-radius: 0.4em;
@@ -15,6 +46,7 @@ button {
     padding: 0.7em;
     margin: 0.7em;
     vertical-align: top;
+    min-height: 31em;
 }
 
 #login h1, #token  h1, #error h1, #tester h1 {
@@ -33,10 +65,6 @@ button {
     padding: 0.7em;
 }
 
-h1 {
-    margin: 0.5em auto;
-}
-
 #error h1 {
     color: darkred;
 }
@@ -45,14 +73,4 @@ h1 {
     position: absolute;
     right: 0.5em;
     top: 0.5em;
-}
-
-h2 {
-    font-size: 115%;
-}
-
-textarea {
-    height: 200px;
-    min-width: 250px;
-    width: 400px;
 }
