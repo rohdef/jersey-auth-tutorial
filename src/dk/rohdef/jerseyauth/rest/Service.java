@@ -49,7 +49,7 @@ public class Service {
         return new ReturnData("Thud!", "Vimes had never got on with any game much more complex than darts. " +
                 "Chess in particular had always annoyed him. It was the dumb way the pawns went off and slaughtered " +
                 "their fellow pawns while the kings lounged about doing nothing that always got to him; if only the " +
-                "pawns united, maybe talked the rooks around, the whole board could’ve been a republic in a dozen moves.",
+                "pawns united, maybe talked the rooks around, the whole board could've been a republic in a dozen moves.",
                 34);
     }
 }
