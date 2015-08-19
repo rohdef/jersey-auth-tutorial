@@ -51,7 +51,7 @@
     </target>
 
     <target name="test" depends="compile,compile-tests">
-        <junit printsummary="yes" haltonfailure="yes">
+        <junit printsummary="yes">
             <classpath refid="compile.classpath" />
             <classpath>
                 <pathelement location="${build.dir}" />
