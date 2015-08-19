@@ -1,6 +1,7 @@
 <project name="test ivy" default="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
     <property name="web.dir" value="web" />
     <property name="out.dir" value="out" />
+    <property name="test.out.dir" value="${out.dir}/test-results" />
     <property name="lib.dir" value="lib" />
     <property name="build.dir" value="${out.dir}/build" />
     <property name="src.dir" value="src" />
@@ -11,6 +12,8 @@
     <target name="init">
         <mkdir dir="${lib.dir}" />
         <mkdir dir="${out.dir}" />
+        <mkdir dir="${test.out.dir}" />
+        <mkdir dir="${test.out.dir}/report" />
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${test.dir}"/>
     </target>
@@ -57,12 +60,16 @@
 
             <formatter type="xml"/>
 
-            <batchtest fork="yes" todir="${out.dir}">
+            <batchtest fork="yes" todir="${test.out.dir}">
                 <fileset dir="${test-src.dir}">
                     <include name="**/*.*" />
                 </fileset>
             </batchtest>
         </junit>
+        <junitreport todir="${test.out.dir}/report/">
+            <fileset dir="${test.out.dir}" includes="*.xml" />
+            <report todir="${test.out.dir}/report/" />
+        </junitreport>
     </target>
 
     <target name="clean">
