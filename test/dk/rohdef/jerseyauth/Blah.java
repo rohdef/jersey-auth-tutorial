@@ -17,6 +17,6 @@ public class Blah {
 
     @Test
     public void BarFoo() {
-        assertThat("True is false", true, is(not(true)));
+        assertThat("True is false", true);
     }
 }

@@ -4,12 +4,15 @@
     <property name="lib.dir" value="lib" />
     <property name="build.dir" value="${out.dir}/build" />
     <property name="src.dir" value="src" />
+    <property name="test-src.dir" value="test" />
+    <property name="test.dir" value="${out.dir}/test" />
     <property name="name" value="jersey-auth" />
 
     <target name="init">
         <mkdir dir="${lib.dir}" />
         <mkdir dir="${out.dir}" />
         <mkdir dir="${build.dir}"/>
+        <mkdir dir="${test.dir}"/>
     </target>
 
     <path id="compile.classpath">
@@ -18,8 +21,18 @@
         </fileset>
     </path>
 
+    <target name="resolve" description="ivy installation" depends="init">
+        <ivy:retrieve/>
+    </target>
+
     <target name="compile" depends="resolve" >
         <javac destdir="${build.dir}" debug="true" srcdir="${src.dir}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="compile-tests" depends="resolve" >
+        <javac destdir="${test.dir}" debug="true" srcdir="${test-src.dir}">
             <classpath refid="compile.classpath"/>
         </javac>
     </target>
@@ -34,8 +47,18 @@
         </war>
     </target>
 
-    <target name="resolve" description="ivy installation" depends="init">
-        <ivy:retrieve/>
+    <target name="test" depends="compile,compile-tests">
+        <junit printsummary="yes" haltonfailure="yes">
+            <classpath refid="compile.classpath"/>
+
+            <formatter type="xml"/>
+
+            <batchtest fork="yes" todir="${out.dir}">
+                <fileset dir="${test-src.dir}">
+                    <include name="**/*.*" />
+                </fileset>
+            </batchtest>
+        </junit>
     </target>
 
     <target name="clean">
