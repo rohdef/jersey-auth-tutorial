@@ -14,9 +14,4 @@ public class Blah {
     public void FooBar() {
         assertThat("True is true", true);
     }
-
-    @Test
-    public void BarFoo() {
-        assertThat("True is false", true, is(not(true)));
-    }
 }
