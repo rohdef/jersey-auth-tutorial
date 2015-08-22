@@ -55,6 +55,7 @@
         <junit printsummary="yes">
             <classpath>
                 <path refid="compile.classpath" />
+                <pathelement location="${build.dir}" />
                 <pathelement location="${test.dir}" />
             </classpath>
 
