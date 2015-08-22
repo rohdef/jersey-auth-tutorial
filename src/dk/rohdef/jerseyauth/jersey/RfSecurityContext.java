@@ -41,6 +41,7 @@ public class RfSecurityContext implements SecurityContext {
 
         for (User user : dao.getUsers()) {
             if (user.getUsername().equals(loginSession.getName())) {
+                // In our simplification each user only has one group
                 return user.getGroup().name().equalsIgnoreCase(role);
             }
         }
