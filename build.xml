@@ -37,6 +37,7 @@
     <target name="compile-tests" depends="resolve" >
         <javac destdir="${test.dir}" debug="true" srcdir="${test-src.dir}">
             <classpath refid="compile.classpath"/>
+            <classpath><pathelement location="${build.dir}" /></classpath>
         </javac>
     </target>
 
@@ -52,9 +53,7 @@
 
     <target name="test" depends="compile,compile-tests">
         <junit printsummary="yes">
-            <classpath refid="compile.classpath" />
             <classpath>
-                <pathelement location="${build.dir}" />
                 <pathelement location="${test.dir}" />
             </classpath>
 
