@@ -20,13 +20,15 @@ public class BasicAuth {
         byte[] decodedBytes = DatatypeConverter.parseBase64Binary(auth);
 
         //If the decode fails in any case
-        if(decodedBytes == null || decodedBytes.length == 0){
+        if(decodedBytes.length == 0){
+            //return null;
             return null;
         }
 
         //Now we can convert the byte[] into a splitted array :
         //  - the first one is login,
         //  - the second one password
-        return new String(decodedBytes).split(":", 2);
+        String[] stringArray = new String(decodedBytes).split(":", 2);
+        return stringArray;
     }
 }

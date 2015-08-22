@@ -17,7 +17,7 @@ Most likely you just want to run either `ant resolve` or `ant build-war`.
 Setting up ant and ivy is beyond the scope of this guide, but if you're on a system using a package manger (such as
  Linux) you'll likely be able to install it from there and not need to worry.
  
- Currently please ignore the tests as they're not ready yet.
+Currently please ignore the tests as they're not ready yet.
 
 # Version notice
 The `@Consumes` and `@Produces` annotations may be needed for earlier versions of Jersey than 2.19, for which this code

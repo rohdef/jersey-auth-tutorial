@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * License MIT
  * @author Rohde Fischer
  */
-@XmlRootElement
 public class LoginRequest {
     private String username, password;
 
