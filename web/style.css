@@ -74,3 +74,8 @@ textarea {
     right: 0.5em;
     top: 0.5em;
 }
+
+#rootBSDLogo {
+    text-align: center;
+    margin: 1em auto;
+}
