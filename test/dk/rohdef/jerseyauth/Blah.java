@@ -14,9 +14,4 @@ public class Blah {
     public void fooBar() {
         assertThat("True is true", true);
     }
-
-    @Test
-    public void fail() {
-        assertThat("No this fails", false);
-    }
 }
