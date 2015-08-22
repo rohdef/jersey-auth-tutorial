@@ -1,16 +1,29 @@
-<project name="test ivy" default="resolve" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="test ivy" default="resolve"
+         xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:jacoco="antlib:org.jacoco.ant">
     <property name="web.dir" value="web" />
     <property name="out.dir" value="out" />
     <property name="test.out.dir" value="${out.dir}/test-results" />
     <property name="lib.dir" value="lib" />
+    <property name="test.lib.dir" value="lib-test" />
     <property name="build.dir" value="${out.dir}/build" />
     <property name="src.dir" value="src" />
     <property name="test-src.dir" value="test" />
     <property name="test.dir" value="${out.dir}/test" />
     <property name="name" value="jersey-auth" />
 
+    <!-- JaCoCo Coverage analysis -->
+    <taskdef uri="antlib:org.jacoco.ant"
+             resource="org/jacoco/ant/antlib.xml">
+        <classpath path="lib-test/jacocoant.jar"/>
+    </taskdef>
+
+    <property name="jacoco.report.dir" value="${test.out.dir}/report" />
+    <property name="jacoco.exec" value="${test.out.dir}/jacoco.exec" />
+
     <target name="init">
         <mkdir dir="${lib.dir}" />
+        <mkdir dir="${test.lib.dir}" />
         <mkdir dir="${out.dir}" />
         <mkdir dir="${test.out.dir}" />
         <mkdir dir="${test.out.dir}/report" />
@@ -24,6 +37,12 @@
         </fileset>
     </path>
 
+    <path id="test.classpath">
+        <path refid="compile.classpath" />
+        <pathelement location="${build.dir}" />
+        <pathelement location="${test.dir}" />
+    </path>
+
     <target name="resolve" description="ivy installation" depends="init">
         <ivy:retrieve/>
     </target>
@@ -35,7 +54,7 @@
     </target>
 
     <target name="compile-tests" depends="resolve" >
-        <javac destdir="${test.dir}" debug="true" srcdir="${test-src.dir}">
+        <javac destdir="${test.dir}" debug="true" srcdir="${test-src.dir}" includeantruntime="false">
             <classpath refid="compile.classpath"/>
             <classpath><pathelement location="${build.dir}" /></classpath>
         </javac>
@@ -53,17 +72,13 @@
 
     <target name="test" depends="compile,compile-tests">
         <junit printsummary="yes">
-            <classpath>
-                <path refid="compile.classpath" />
-                <pathelement location="${build.dir}" />
-                <pathelement location="${test.dir}" />
-            </classpath>
+            <classpath refid="test.classpath" />
 
             <formatter type="xml"/>
 
             <batchtest fork="yes" todir="${test.out.dir}">
                 <fileset dir="${test-src.dir}">
-                    <include name="**/*.*" />
+                    <include name="**/*.java" />
                 </fileset>
             </batchtest>
         </junit>
@@ -71,6 +86,23 @@
             <fileset dir="${test.out.dir}" includes="*.xml" />
             <report todir="${test.out.dir}/report/" />
         </junitreport>
+    </target>
+
+    <target name="test-coverage" depends="compile,compile-tests"
+            description="--> Run JUnit and generate coverage data for all tests">
+        <jacoco:coverage destfile="${jacoco.exec}" >
+            <junit printsummary="yes" fork="yes" forkmode="once">
+                <classpath refid="test.classpath" />
+
+                <formatter type="xml"/>
+
+                <batchtest fork="yes" todir="${test.out.dir}">
+                    <fileset dir="${test-src.dir}">
+                        <include name="**/*.java" />
+                    </fileset>
+                </batchtest>
+            </junit>
+        </jacoco:coverage>
     </target>
 
     <target name="clean-all">
