@@ -11,7 +11,12 @@ import static org.hamcrest.Matchers.*;
  */
 public class Blah {
     @Test
-    public void FooBar() {
+    public void fooBar() {
         assertThat("True is true", true);
+    }
+
+    @Test
+    public void fail() {
+        assertThat("No this fails", false);
     }
 }
