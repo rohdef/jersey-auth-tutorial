@@ -73,8 +73,14 @@
         </junitreport>
     </target>
 
-    <target name="clean">
+    <target name="clean-all">
         <delete dir="${lib.dir}" />
         <delete dir="${out.dir}" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${lib.dir}" />
+        <delete dir="${build.dir}" />
+        <delete dir="${test.dir}" />
     </target>
 </project>
