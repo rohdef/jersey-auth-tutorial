@@ -54,6 +54,7 @@
     <target name="test" depends="compile,compile-tests">
         <junit printsummary="yes">
             <classpath>
+                <path refid="compile.classpath" />
                 <pathelement location="${test.dir}" />
             </classpath>
 
