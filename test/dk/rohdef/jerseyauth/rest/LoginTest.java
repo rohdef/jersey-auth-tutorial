@@ -32,9 +32,9 @@ public class LoginTest {
 
     @Test
     public void shouldLogValidUserIn() {
-        assertThat(loginService.login(adminRequest), notNullValue());
-        assertThat(loginService.login(adminRequest).getName(), is("realis"));
-        assertThat(loginService.login(adminRequest).getToken(), is("the lamplighter"));
+        assertThat(loginService.login(userRequest), notNullValue());
+        assertThat(loginService.login(userRequest).getName(), is("realis"));
+        assertThat(loginService.login(userRequest).getToken(), is("the lamplighter"));
     }
 
     @Test
