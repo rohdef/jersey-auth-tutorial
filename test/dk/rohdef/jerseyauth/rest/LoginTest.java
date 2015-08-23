@@ -17,7 +17,7 @@ public class LoginTest {
     private LoginRequest adminRequest, userRequest;
 
     @Before
-    public void setUp() {
+    public void setup() {
         loginService = new Login();
         adminRequest = new LoginRequest("fiktivus", "maximus");
         userRequest = new LoginRequest("realis", "minimalis");
