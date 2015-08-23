@@ -78,7 +78,7 @@
 
             <batchtest fork="yes" todir="${test.out.dir}">
                 <fileset dir="${test-src.dir}">
-                    <include name="**/*.java" />
+                    <include name="**/*Test*.java" />
                 </fileset>
             </batchtest>
         </junit>
@@ -98,7 +98,7 @@
 
                 <batchtest fork="yes" todir="${test.out.dir}">
                     <fileset dir="${test-src.dir}">
-                        <include name="**/*.java" />
+                        <include name="**/*Test*.java" />
                     </fileset>
                 </batchtest>
             </junit>
